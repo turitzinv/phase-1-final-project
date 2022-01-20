@@ -14,6 +14,31 @@ const loadHomepage = () => {
   h1.classList.add('center-align');
   h1.innerText = 'Workout Schedule'
   mainDiv().appendChild(h1);
+  const form = document.createElement('form')
+  form.innerHTML = `
+      <div class="input-field">
+        <input id="day" type="text">
+        <label for="day">Day</label>
+      </div>
+      <div class="input-field">
+        <input id="focus" type="text">
+        <label for="focus">Focus</label>
+      </div>
+      <div class="input-field">
+        <input id="exercise1" type="text">
+        <label for="exercise1">Exercise 1</label>
+      </div>
+      <div class="input-field">
+        <input id="exercise2" type="text">
+        <label for="exercise2">Exercise 2</label>
+      </div>
+      <div class="input-field">
+        <input id="exercise3" type="text">
+        <label for="exercise3">Exercise 3</label>
+      </div>
+      <input type="submit" value="Create Workout" class="waves-effect waves-teal btn-flat">
+  `
+  mainDiv().appendChild(form)
 }
 
 const loadWorkouts = async () => {
@@ -68,22 +93,22 @@ const workoutListLink = () => {
   })
 }
 
-const newWorkoutLink = () => {
-  addNewWorkout().addEventListener('click', (e) => {
-    e.preventDefault()
-    alertCheck()
-  })
-}
+// const newWorkoutLink = () => {
+//   addNewWorkout().addEventListener('click', (e) => {
+//     e.preventDefault()
+//     document.querySelector(form.type) =''
+//   })
+// }
 
 /* Startup */
 
 document.addEventListener('DOMContentLoaded', function () {
   //what happens when the page loads
-  // loadHomepage(); //this will load 'Workout Schedule'
+  loadHomepage(); //this will load 'Workout Schedule'
   homePageLink(); //when DOM loads, its going to render the click event that allows to render homepage
   workoutListLink(); //this will load the table
   loadWorkouts(); //fetch db.json
-  newWorkoutLink(); //button to add a new workout
+  // newWorkoutLink(); //button to add a new workout
 })
 
 /* Event listeners checklist
