@@ -8,7 +8,11 @@ const workoutList = () => document.getElementById('workout-list-page')
 
 /* Event Handlers, what happens when something triggers */
 const loadHomepage = () => {
-  return ' <h1 class="center-align">Workout Schedule</h1> '
+  mainDiv().innerHTML = ''
+  const h1 = document.createElement('h1');
+  h1.classList.add('center-align');
+  h1.innerText = 'Workout Schedule'
+  mainDiv().appendChild(h1);
 }
 
 const loadWorkouts = async () => {
@@ -37,7 +41,6 @@ const workoutTemplate = (workouts) => {
 
   workouts.forEach(workout => {
     let rows = document.createElement('tr')
-    rows.className = 'centered'
     rows.innerHTML = `
      <td>${workout.day}</td>
      <td>${workout.focus}</td>
@@ -53,7 +56,7 @@ const workoutTemplate = (workouts) => {
 const homePageLink = () => {
   home().addEventListener('click', (e) => {
     e.preventDefault();
-    showHomepage();
+    loadHomepage();
   })
 }
 //Below is click event for "Workout List" on the nav bar
@@ -68,17 +71,11 @@ const workoutListLink = () => {
 
 document.addEventListener('DOMContentLoaded', function () {
   //what happens when the page loads
-  showHomepage(); //this will load 'Workout Schedule'
+  loadHomepage(); //this will load 'Workout Schedule'
   homePageLink(); //when DOM loads, its going to render the click event that allows to render homepage
   workoutListLink(); //this will load the table
   loadWorkouts(); //fetch db.json
 })
-
-/* renders to mainDiv */
-const showHomepage = () => {
-  mainDiv().innerHTML = loadHomepage(); //adds in the h1 Workout Schedule
-}
-
 
 /* Event listeners checklist
 

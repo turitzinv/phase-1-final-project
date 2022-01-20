@@ -4,23 +4,23 @@
       "id": 1,
       "day": "Monday",
       "focus": "Cardio",
-      "exercise1": "5k run",
-      "exercise2": "Sprints",
+      "exercise1": "5k run at local park",
+      "exercise2": "Sprints on track",
       "exercise3": "Cooldown walk"
     },
     {
       "id": 2,
       "day": "Tuesday",
       "focus": "Arms",
-      "exercise1": "Curls",
-      "exercise2": "Tricep pulldown",
+      "exercise1": "Dumbbell Curls",
+      "exercise2": "Tricep Pulldown",
       "exercise3": "Diamond Pushups"
     },
     {
       "id": 3,
       "day": "Wednesday",
       "focus": "Legs",
-      "exercise1": "Squats",
+      "exercise1": "Bar Squats",
       "exercise2": "Leg Press",
       "exercise3": "Calf raises"
     }
