@@ -1,0 +1,28 @@
+{
+  "workout": [
+    {
+      "id": 1,
+      "Day": "Monday",
+      "Focus": "Cardio",
+      "Exercise 1": "5k run",
+      "Exercise 2": "Sprints",
+      "Exercise 3": "Cooldown walk"
+    },
+    {
+      "id": 2,
+      "Day": "Tuesday",
+      "Focus": "Arms",
+      "Exercise 1": "Curls",
+      "Exercise 2": "Tricep pulldown",
+      "Exercise 3": "Diamond Pushups"
+    },
+    {
+      "id": 3,
+      "Day": "Wednesday",
+      "Focus": "Legs",
+      "Exercise 1": "Squats",
+      "Exercise 2": "Leg Press",
+      "Exercise 3": "Calf raises"
+    }
+  ]
+}
