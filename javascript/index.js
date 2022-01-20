@@ -18,39 +18,44 @@ const loadWorkouts = async () => {
 }
 
 const workoutTemplate = () => {
-  return `
-  <h1>Workout of the Week</h1>
-    <table class="centered">
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Focus</th>
-          <th>Exercise1</th>
-          <th>Exercise2</th>
-          <th>Exercise3</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-      </tbody>
-    </table>
+  let schedule = document.createElement('table')
+  schedule.className ='centered'
+  schedule.innerHTML = `
+       <thead>
+         <tr>
+           <th>Day</th>
+           <th>Focus</th>
+           <th>Exercise1</th>
+           <th>Exercise2</th>
+           <th>Exercise3</th>
+         </tr>
+         </thead>
   `
+ mainDiv().appendChild(schedule)
+  
+  // return `
+  //   <table class="centered">
+  //     <thead>
+  //       <tr>
+  //         <th>Day</th>
+  //         <th>Focus</th>
+  //         <th>Exercise1</th>
+  //         <th>Exercise2</th>
+  //         <th>Exercise3</th>
+  //       </tr>
+  // `
 }
 
-const schedule = (workout) => {
-  return `
-  <tr>
-    <td>${workout.day}</td>
-    <td>${workout.focus}</td>
-    <td>${workout.exercise1}</td>
-    <td>${workout.exercise2}</td>
-    <td>${workout.exercise3}</td>
-</tr> `
-}
-
-function addSchedule(array) {
-  array.forEach(workout => schedule(workout))
-}
+// const schedule = (workout) => {
+//   return `
+//   <tr>
+//     <td>${workout.day}</td>
+//     <td>${workout.focus}</td>
+//     <td>${workout.exercise1}</td>
+//     <td>${workout.exercise2}</td>
+//     <td>${workout.exercise3}</td>
+// </tr> `
+// }
 
 //Below is click event for "Home" on the nav bar
 const homePageLink = () => {
@@ -63,7 +68,7 @@ const homePageLink = () => {
 const workoutListLink = () => {
   workoutList().addEventListener('click', (e) => {
     e.preventDefault();
-    workout();
+    workoutTemplate();
   })
 }
 
@@ -82,9 +87,9 @@ const showHomepage = () => {
   mainDiv().innerHTML = loadHomepage(); //adds in the h1 Workout Schedule
 }
 
-const workout = () => {
-  mainDiv().innerHTML = workoutTemplate() //adds in the table
-}
+// const workout = () => {
+//   mainDiv().innerHTML = workoutTemplate() //adds in the table
+// }
 
 
 /* Event listeners checklist
