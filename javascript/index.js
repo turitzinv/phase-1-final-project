@@ -2,9 +2,10 @@
 let workouts = []
 
 /* Node Getters */
-const mainDiv = () => document.getElementById('main')
-const home = () => document.getElementById('home-page')
-const workoutList = () => document.getElementById('workout-list-page')
+const mainDiv = () => document.getElementById('main');
+const home = () => document.getElementById('home-page');
+const workoutList = () => document.getElementById('workout-list-page');
+const addNewWorkout = () => document.getElementById('Add-New-Workout');
 
 /* Event Handlers, what happens when something triggers */
 const loadHomepage = () => {
@@ -67,14 +68,22 @@ const workoutListLink = () => {
   })
 }
 
+const newWorkoutLink = () => {
+  addNewWorkout().addEventListener('click', (e) => {
+    e.preventDefault()
+    alertCheck()
+  })
+}
+
 /* Startup */
 
 document.addEventListener('DOMContentLoaded', function () {
   //what happens when the page loads
-  loadHomepage(); //this will load 'Workout Schedule'
+  // loadHomepage(); //this will load 'Workout Schedule'
   homePageLink(); //when DOM loads, its going to render the click event that allows to render homepage
   workoutListLink(); //this will load the table
   loadWorkouts(); //fetch db.json
+  newWorkoutLink(); //button to add a new workout
 })
 
 /* Event listeners checklist
