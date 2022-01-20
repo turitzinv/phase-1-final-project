@@ -14,12 +14,14 @@ const loadHomepage = () => {
 const loadWorkouts = async () => {
   fetch('http://localhost:3000/workout') //GET our workouts from db.json
     .then(resp => resp.json())
-    .then(data => workouts = data) //adds our data into the workouts array
+    .then(data => {
+      workouts = data //adds our data into the workouts array
+    })
 }
 
-const workoutTemplate = () => {
+const workoutTemplate = (workouts) => {
   let schedule = document.createElement('table')
-  schedule.className ='centered'
+  schedule.className = 'centered'
   schedule.innerHTML = `
        <thead>
          <tr>
@@ -31,31 +33,21 @@ const workoutTemplate = () => {
          </tr>
          </thead>
   `
- mainDiv().appendChild(schedule)
-  
-  // return `
-  //   <table class="centered">
-  //     <thead>
-  //       <tr>
-  //         <th>Day</th>
-  //         <th>Focus</th>
-  //         <th>Exercise1</th>
-  //         <th>Exercise2</th>
-  //         <th>Exercise3</th>
-  //       </tr>
-  // `
-}
+  mainDiv().appendChild(schedule)
 
-// const schedule = (workout) => {
-//   return `
-//   <tr>
-//     <td>${workout.day}</td>
-//     <td>${workout.focus}</td>
-//     <td>${workout.exercise1}</td>
-//     <td>${workout.exercise2}</td>
-//     <td>${workout.exercise3}</td>
-// </tr> `
-// }
+  workouts.forEach(workout => {
+    let rows = document.createElement('tr')
+    rows.className = 'centered'
+    rows.innerHTML = `
+     <td>${workout.day}</td>
+     <td>${workout.focus}</td>
+     <td>${workout.exercise1}</td>
+     <td>${workout.exercise2}</td>
+     <td>${workout.exercise3}</td>
+    `
+    schedule.appendChild(rows)
+  })
+}
 
 //Below is click event for "Home" on the nav bar
 const homePageLink = () => {
@@ -68,7 +60,7 @@ const homePageLink = () => {
 const workoutListLink = () => {
   workoutList().addEventListener('click', (e) => {
     e.preventDefault();
-    workoutTemplate();
+    workoutTemplate(workouts);
   })
 }
 
@@ -86,10 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
 const showHomepage = () => {
   mainDiv().innerHTML = loadHomepage(); //adds in the h1 Workout Schedule
 }
-
-// const workout = () => {
-//   mainDiv().innerHTML = workoutTemplate() //adds in the table
-// }
 
 
 /* Event listeners checklist

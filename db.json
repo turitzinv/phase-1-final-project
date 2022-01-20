@@ -2,27 +2,27 @@
   "workout": [
     {
       "id": 1,
-      "Day": "Monday",
-      "Focus": "Cardio",
-      "Exercise1": "5k run",
-      "Exercise2": "Sprints",
-      "Exercise3": "Cooldown walk"
+      "day": "Monday",
+      "focus": "Cardio",
+      "exercise1": "5k run",
+      "exercise2": "Sprints",
+      "exercise3": "Cooldown walk"
     },
     {
       "id": 2,
-      "Day": "Tuesday",
-      "Focus": "Arms",
-      "Exercise1": "Curls",
-      "Exercise2": "Tricep pulldown",
-      "Exercise3": "Diamond Pushups"
+      "day": "Tuesday",
+      "focus": "Arms",
+      "exercise1": "Curls",
+      "exercise2": "Tricep pulldown",
+      "exercise3": "Diamond Pushups"
     },
     {
       "id": 3,
-      "Day": "Wednesday",
-      "Focus": "Legs",
-      "Exercise1": "Squats",
-      "Exercise2": "Leg Press",
-      "Exercise3": "Calf raises"
+      "day": "Wednesday",
+      "focus": "Legs",
+      "exercise1": "Squats",
+      "exercise2": "Leg Press",
+      "exercise3": "Calf raises"
     }
   ]
 }
