@@ -42,7 +42,7 @@ const loadHomepage = () => {
   mainDiv().appendChild(form)
 }
 
-const loadWorkouts = async () => {
+const loadWorkouts = () => {
   fetch('http://localhost:3000/workout') //GET our workouts from db.json
     .then(resp => resp.json())
     .then(data => {
@@ -50,7 +50,7 @@ const loadWorkouts = async () => {
     })
 }
 
-const workoutTemplate = async (workouts) => {
+const workoutTemplate = (workouts) => {
   let schedule = document.createElement('table')
   schedule.className = 'centered'
   schedule.innerHTML = `
@@ -120,29 +120,19 @@ const submitFormEvent = e => {
     .then(workout => workouts.push(workout))
 }
 
-// const newWorkoutLink = () => {
-//   addNewWorkout().addEventListener('click', (e) => {
-//     e.preventDefault()
-//     document.querySelector(form.type) =''
-//   })
-// }
-
 /* Startup */
-
 document.addEventListener('DOMContentLoaded', function () {
   //what happens when the page loads
   loadHomepage(); //this will load 'Workout Schedule'
   homePageLink(); //when DOM loads, its going to render the click event that allows to render homepage
   workoutListLink(); //this will load the table
   loadWorkouts(); //fetch db.json
-  // newWorkoutLink(); //button to add a new workout
 })
 
 /* Event listeners checklist
 
-- created a DOMContentLoaded, adds in the title of 'Workout Schedule'
-when the page loads, adding in an h1 header.  Also loads click events.
-- Click Home and "Workout Schedule appears" on the main page.
+- created a DOMContentLoaded
+- Click Home and "Workout Schedule" on the main page with a form
 - Click Workout List and "Work out of the week" will appear with a table
 
 */
