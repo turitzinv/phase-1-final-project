@@ -6,7 +6,7 @@ const mainDiv = () => document.getElementById('main');
 const home = () => document.getElementById('home-page');
 const workoutList = () => document.getElementById('workout-list-page');
 const addNewWorkout = () => document.getElementById('Add-New-Workout');
-const table = () =>document.querySelector('table')
+const table = () => document.querySelector('table')
 
 /* Event Handlers, what happens when something triggers */
 const loadHomepage = () => {
@@ -39,7 +39,7 @@ const loadHomepage = () => {
       </div>
       <input type="submit" value="Create Workout" class="waves-effect waves-teal btn-flat">
   `
-  form.addEventListener('submit',submitFormEvent)
+  form.addEventListener('submit', submitFormEvent)
   mainDiv().appendChild(form)
 }
 
@@ -79,7 +79,7 @@ const workoutTemplate = (workouts) => {
     `
     schedule.appendChild(rows)
   })
-  table().addEventListener('click', onDeleteRow); //adds click option to button
+  table().addEventListener('click', onDeleteRow); //Delete eventListener
 }
 
 //Below is click event for "Home" on the nav bar
@@ -121,13 +121,35 @@ const submitFormEvent = e => {
     .then(workout => workouts.push(workout))
 }
 
-//Delete button event listener
+//Delete button function
 function onDeleteRow(e) {
   e.preventDefault()
   if (!e.target.classList.contains('deleteBtn')) {
     return;
   }
-  alert("clicked on button")
+  const btn = e.target
+  btn.closest('tr').remove();
+  updateWorkout(workouts)
+}
+
+function updateWorkout(workout) {
+  const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = workout.target.children
+  fetch(`http://localhost:3000/workout/${workout.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      day: day.children[0].value,
+      focus: focus.children[0].value,
+      exercise1: exerciseOne.children[0].value,
+      exercise2: exerciseTwo.children[0].value,
+      exercise3: exerciseThree.children[0].value,
+    })
+  })
+    .then(resp => resp.json())
+    .then(workout => console.log(workout))
 }
 
 /* Startup */
