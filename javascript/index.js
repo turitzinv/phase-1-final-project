@@ -128,9 +128,8 @@ function onDeleteRow(e) {
     return;
   }
   const btn = e.target
-  updateWorkout(workouts)
   btn.closest('tr').remove();
-  
+  updateWorkout(workouts)
 }
 
 function updateWorkout(workout) {
@@ -141,15 +140,15 @@ function updateWorkout(workout) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      // day: day,
-      // focus: focus,
-      // exercise1: exercise1,
-      // exercise2: exercise2,
-      // exercise3: exercise3,
+      day: delete day,
+      focus: delete focus,
+      exercise1: delete exercise1,
+      exercise2: delete exercise2,
+      exercise3: delete exercise3,
     })
   })
     .then(resp => resp.json())
-    .then(workout => console.log(workout))
+    .then(workout => workout)
 }
 
 /* Startup */
