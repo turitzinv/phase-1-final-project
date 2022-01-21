@@ -128,24 +128,24 @@ function onDeleteRow(e) {
     return;
   }
   const btn = e.target
-  btn.closest('tr').remove();
   updateWorkout(workouts)
+  btn.closest('tr').remove();
+  
 }
 
 function updateWorkout(workout) {
-  const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = workout.target.children
-  fetch(`http://localhost:3000/workout/${workout.id}`, {
+  fetch(`http://localhost:3000/workout/${workout[0].id}`, {
     method: 'PATCH',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      day: day.children[0].value,
-      focus: focus.children[0].value,
-      exercise1: exerciseOne.children[0].value,
-      exercise2: exerciseTwo.children[0].value,
-      exercise3: exerciseThree.children[0].value,
+      // day: day,
+      // focus: focus,
+      // exercise1: exercise1,
+      // exercise2: exercise2,
+      // exercise3: exercise3,
     })
   })
     .then(resp => resp.json())
