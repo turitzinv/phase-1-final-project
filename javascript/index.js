@@ -50,7 +50,7 @@ const loadWorkouts = async () => {
     })
 }
 
-const workoutTemplate = (workouts) => {
+const workoutTemplate = async (workouts) => {
   let schedule = document.createElement('table')
   schedule.className = 'centered'
   schedule.innerHTML = `
@@ -96,12 +96,12 @@ const workoutListLink = () => {
 
 const submitFormEvent = e => {
   e.preventDefault()
-  const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = e.target.children[0].value
-  console.log('day', day.children[0].value)
-  console.log('focus', focus.children[0].value)
-  console.log('exerciseOne', exerciseOne.children[0].value)
-  console.log('exerciseTwo', exerciseTwo.children[0].value)
-  console.log('exerciseThree', exerciseThree.children[0].value)
+  const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = e.target.children
+  // console.log('day', day)
+  // console.log('focus', focus)
+  // console.log('exerciseOne', exerciseOne)
+  // console.log('exerciseTwo', exerciseTwo)
+  // console.log('exerciseThree', exerciseThree)
   fetch('http://localhost:3000/workout', {
     method: 'POST',
     headers: {
@@ -109,13 +109,15 @@ const submitFormEvent = e => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      day: day,
-      focus: focus,
-      exercise1: exerciseOne,
-      exercise2: exerciseOne,
-      exercise3: exerciseOne,
+      day: day.children[0].value,
+      focus: focus.children[0].value,
+      exercise1: exerciseOne.children[0].value,
+      exercise2: exerciseTwo.children[0].value,
+      exercise3: exerciseThree.children[0].value,
     })
   })
+    .then(resp => resp.json())
+    .then(workout => workouts.push(workout))
 }
 
 // const newWorkoutLink = () => {
