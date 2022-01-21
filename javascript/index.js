@@ -38,6 +38,7 @@ const loadHomepage = () => {
       </div>
       <input type="submit" value="Create Workout" class="waves-effect waves-teal btn-flat">
   `
+  form.addEventListener('submit',submitFormEvent)
   mainDiv().appendChild(form)
 }
 
@@ -90,6 +91,30 @@ const workoutListLink = () => {
   workoutList().addEventListener('click', (e) => {
     e.preventDefault();
     workoutTemplate(workouts);
+  })
+}
+
+const submitFormEvent = e => {
+  e.preventDefault()
+  const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = e.target.children[0].value
+  console.log('day', day.children[0].value)
+  console.log('focus', focus.children[0].value)
+  console.log('exerciseOne', exerciseOne.children[0].value)
+  console.log('exerciseTwo', exerciseTwo.children[0].value)
+  console.log('exerciseThree', exerciseThree.children[0].value)
+  fetch('http://localhost:3000/workout', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      day: day,
+      focus: focus,
+      exercise1: exerciseOne,
+      exercise2: exerciseOne,
+      exercise3: exerciseOne,
+    })
   })
 }
 
