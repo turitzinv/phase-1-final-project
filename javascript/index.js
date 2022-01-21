@@ -6,6 +6,7 @@ const mainDiv = () => document.getElementById('main');
 const home = () => document.getElementById('home-page');
 const workoutList = () => document.getElementById('workout-list-page');
 const addNewWorkout = () => document.getElementById('Add-New-Workout');
+const table = () =>document.querySelector('table')
 
 /* Event Handlers, what happens when something triggers */
 const loadHomepage = () => {
@@ -74,9 +75,11 @@ const workoutTemplate = (workouts) => {
      <td>${workout.exercise1}</td>
      <td>${workout.exercise2}</td>
      <td>${workout.exercise3}</td>
+     <td><button class="deleteBtn">Delete</button></td>
     `
     schedule.appendChild(rows)
   })
+  table().addEventListener('click', onDeleteRow); //adds click option to button
 }
 
 //Below is click event for "Home" on the nav bar
@@ -97,11 +100,9 @@ const workoutListLink = () => {
 const submitFormEvent = e => {
   e.preventDefault()
   const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = e.target.children
-  // console.log('day', day)
-  // console.log('focus', focus)
-  // console.log('exerciseOne', exerciseOne)
-  // console.log('exerciseTwo', exerciseTwo)
-  // console.log('exerciseThree', exerciseThree)
+  // console.log(day.children)
+  // console.log(day.children[0])
+  // console.log(day.children[0].value)
   fetch('http://localhost:3000/workout', {
     method: 'POST',
     headers: {
@@ -118,6 +119,15 @@ const submitFormEvent = e => {
   })
     .then(resp => resp.json())
     .then(workout => workouts.push(workout))
+}
+
+//Delete button event listener
+function onDeleteRow(e) {
+  e.preventDefault()
+  if (!e.target.classList.contains('deleteBtn')) {
+    return;
+  }
+  alert("clicked on button")
 }
 
 /* Startup */
