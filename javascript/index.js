@@ -158,7 +158,7 @@ function updateWorkout(workout) {
     })
   })
     .then(resp => resp.json())
-    .then(workout => workoutTemplate(workout))
+    .then(workout => loadWorkouts())
 }
 
 
