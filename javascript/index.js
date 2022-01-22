@@ -1,6 +1,15 @@
 /* Global */
 let workouts = []
 
+/* Startup */
+document.addEventListener('DOMContentLoaded', function () {
+  //what happens when the page loads
+  loadHomepage(); //this will load 'Workout Schedule'
+  homePageLink(); //when DOM loads, its going to render the click event that allows to render homepage
+  workoutListLink(); //this will load the table
+  loadWorkouts(); //fetch db.json
+})
+
 /* Node Getters */
 const mainDiv = () => document.getElementById('main');
 const home = () => document.getElementById('home-page');
@@ -134,31 +143,25 @@ function onDeleteRow(e) {
 
 function updateWorkout(workout) {
   fetch(`http://localhost:3000/workout/${workout[0].id}`, {
-    method: 'PATCH',
+    method: 'DELETE',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      day: delete day,
-      focus: delete focus,
-      exercise1: delete exercise1,
-      exercise2: delete exercise2,
-      exercise3: delete exercise3,
+      
+      // day: delete day,
+      // focus: delete focus,
+      // exercise1: delete exercise1,
+      // exercise2: delete exercise2,
+      // exercise3: delete exercise3,
     })
   })
     .then(resp => resp.json())
-    .then(workout => workout)
+    .then(workout => workoutTemplate(workout))
 }
 
-/* Startup */
-document.addEventListener('DOMContentLoaded', function () {
-  //what happens when the page loads
-  loadHomepage(); //this will load 'Workout Schedule'
-  homePageLink(); //when DOM loads, its going to render the click event that allows to render homepage
-  workoutListLink(); //this will load the table
-  loadWorkouts(); //fetch db.json
-})
+
 
 /* Event listeners checklist
 
