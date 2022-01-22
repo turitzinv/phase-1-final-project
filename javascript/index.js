@@ -149,12 +149,6 @@ function updateWorkout(workout) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      
-      // day: delete day,
-      // focus: delete focus,
-      // exercise1: delete exercise1,
-      // exercise2: delete exercise2,
-      // exercise3: delete exercise3,
     })
   })
     .then(resp => resp.json())
