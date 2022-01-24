@@ -106,6 +106,7 @@ const workoutListLink = () => {
   })
 }
 
+//what ocurs after submitting the form, JSON receives new data
 const submitFormEvent = e => {
   e.preventDefault()
   const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = e.target.children
@@ -128,6 +129,7 @@ const submitFormEvent = e => {
   })
     .then(resp => resp.json())
     .then(workout => workouts.push(workout))
+    .then(workoutTemplate(workouts))
 }
 
 //Delete button function
@@ -141,6 +143,8 @@ function onDeleteRow(e) {
   updateWorkout(workouts)
 }
 
+
+//Updating JSON Server to reflect deletion
 function updateWorkout(workout) {
   fetch(`http://localhost:3000/workout/${workout[0].id}`, {
     method: 'DELETE',
