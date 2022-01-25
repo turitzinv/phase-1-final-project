@@ -27,7 +27,7 @@ const loadHomepage = () => {
   const form = document.createElement('form')
   form.innerHTML = `
       <div class="input-field">
-        <input id="day" type="text">
+        <input id="day" name="day" type="text">
         <label for="day">Day</label>
       </div>
       <div class="input-field">
@@ -84,7 +84,7 @@ const workoutTemplate = (workouts) => {
      <td>${workout.exercise1}</td>
      <td>${workout.exercise2}</td>
      <td>${workout.exercise3}</td>
-     <td><button class="deleteBtn">Delete</button></td>
+     <td><button id="${workout.id}" class="deleteBtn">Delete</button></td>
     `
     schedule.appendChild(rows)
   })
@@ -113,6 +113,7 @@ const submitFormEvent = e => {
   // console.log(day.children)
   // console.log(day.children[0])
   // console.log(day.children[0].value)
+  console.log(e.target.day.value)
   fetch('http://localhost:3000/workout', {
     method: 'POST',
     headers: {
@@ -128,25 +129,27 @@ const submitFormEvent = e => {
     })
   })
     .then(resp => resp.json())
-    .then(workout => workouts.push(workout))
-    .then(workoutTemplate(workouts))
+    .then(workout => {
+      workouts.push(workout)
+      workoutTemplate(workouts)
+      e.target.reset()
+    })
 }
 
 //Delete button function
 function onDeleteRow(e) {
-  e.preventDefault()
   if (!e.target.classList.contains('deleteBtn')) {
     return;
   }
   const btn = e.target
   btn.closest('tr').remove();
-  updateWorkout(workouts)
+  updateWorkout(e.target.id)
 }
 
 
 //Updating JSON Server to reflect deletion
-function updateWorkout(workout) {
-  fetch(`http://localhost:3000/workout/${workout[0].id}`, {
+function updateWorkout(workoutId) {
+  fetch(`http://localhost:3000/workout/${workoutId}`, {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json',
