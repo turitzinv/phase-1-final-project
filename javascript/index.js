@@ -112,7 +112,6 @@ const workoutListLink = () => {
 //what ocurs after submitting the form, JSON receives new data
 const submitFormEvent = e => {
   e.preventDefault()
-  const [day, focus, exerciseOne, exerciseTwo, exerciseThree] = e.target.children
   // console.log(day.children)
   // console.log(day.children[0])
   // console.log(day.children[0].value)
@@ -124,11 +123,11 @@ const submitFormEvent = e => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      day: day.children[0].value,
-      focus: focus.children[0].value,
-      exercise1: exerciseOne.children[0].value,
-      exercise2: exerciseTwo.children[0].value,
-      exercise3: exerciseThree.children[0].value,
+      day: e.target.day.value,
+      focus: e.target.focus.value,
+      exercise1: e.target.exercise1.value,
+      exercise2: e.target.exercise2.value,
+      exercise3: e.target.exercise3.value,
     })
   })
     .then(resp => resp.json())
