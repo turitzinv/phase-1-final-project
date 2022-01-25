@@ -16,10 +16,12 @@ const home = () => document.getElementById('home-page');
 const workoutList = () => document.getElementById('workout-list-page');
 const addNewWorkout = () => document.getElementById('Add-New-Workout');
 const table = () => document.querySelector('table')
+const secondary = () => document.getElementById('secondary')
 
 /* Event Handlers, what happens when something triggers */
 const loadHomepage = () => {
   mainDiv().innerHTML = ''
+  secondary().innerHTML=''
   const h1 = document.createElement('h1');
   h1.classList.add('center-align');
   h1.innerText = 'Workout Schedule'
@@ -61,6 +63,7 @@ const loadWorkouts = () => {
 }
 
 const workoutTemplate = (workouts) => {
+  secondary().innerHTML=''
   let schedule = document.createElement('table')
   schedule.className = 'centered'
   schedule.innerHTML = `
@@ -74,7 +77,7 @@ const workoutTemplate = (workouts) => {
          </tr>
          </thead>
   `
-  mainDiv().appendChild(schedule)
+  secondary().appendChild(schedule)
 
   workouts.forEach(workout => {
     let rows = document.createElement('tr')
