@@ -163,13 +163,3 @@ function updateWorkout(workoutId) {
     .then(resp => resp.json())
     .then(workout => loadWorkouts())
 }
-
-
-
-/* Event listeners checklist
-
-- created a DOMContentLoaded
-- Click Home and "Workout Schedule" on the main page with a form
-- Click Workout List and "Work out of the week" will appear with a table
-
-*/
