@@ -4,7 +4,7 @@ let workouts = []
 /* Startup */
 document.addEventListener('DOMContentLoaded', function () {
   //what happens when the page loads
-  loadHomepage(); //this will load 'Workout Schedule'
+  loadHomepage(); //this will load 'Workout Schedule' and form
   homePageLink(); //when DOM loads, its going to render the click event that allows to render homepage
   workoutListLink(); //this will load the table
   loadWorkouts(); //fetch db.json
@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
 const mainDiv = () => document.getElementById('main');
 const home = () => document.getElementById('home-page');
 const workoutList = () => document.getElementById('workout-list-page');
-const addNewWorkout = () => document.getElementById('Add-New-Workout');
 const table = () => document.querySelector('table')
 const secondary = () => document.getElementById('secondary')
 
@@ -112,10 +111,6 @@ const workoutListLink = () => {
 //what ocurs after submitting the form, JSON receives new data
 const submitFormEvent = e => {
   e.preventDefault()
-  // console.log(day.children)
-  // console.log(day.children[0])
-  // console.log(day.children[0].value)
-  console.log(e.target.day.value)
   fetch('http://localhost:3000/workout', {
     method: 'POST',
     headers: {
@@ -134,7 +129,7 @@ const submitFormEvent = e => {
     .then(workout => {
       workouts.push(workout)
       workoutTemplate(workouts)
-      e.target.reset()
+      e.target.reset() //removes values from form
     })
 }
 
